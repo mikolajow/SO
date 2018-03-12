@@ -7,6 +7,7 @@ public class testMain {
 
 	public static void main(String[] args) {
 		
+		/*
 		Scanner sc = new Scanner(System.in);
 		ArrayList<proces> doKol = new ArrayList<>();
 		
@@ -35,10 +36,10 @@ public class testMain {
 		kolejka kol3 = new kolejka(kol1);
 		kolejka kol4 = new kolejka(kol1);
 		
+		*/
 		
 		
-		/*
-		kolejka kol1 = new kolejka(14);
+		kolejka kol1 = new kolejka(80);
 		kolejka kol2 = new kolejka(kol1);
 		kolejka kol3 = new kolejka(kol1);
 		kolejka kol4 = new kolejka(kol1);
@@ -83,7 +84,7 @@ public class testMain {
 		System.out.println("fcfs " + algFcfs.run());
 		
 		
-		RR alg4 = new RR(kol4 , 10);
+		RR alg4 = new RR(kol4 , 15);
 		System.out.println("RR " + alg4.run());
 	
 		

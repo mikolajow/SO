@@ -27,10 +27,15 @@ public class kolejka {
 	public kolejka(int rozmiar) {
 		Random generator = new Random();
 		for (int i = 0; i < rozmiar ; i++) {
-			this.lista.add(new proces(22, 44, 2));
 			this.lista.add(new proces(generator.nextInt(100)+30, generator.nextInt(10)+1, generator.nextInt(7) ) );
 		//generujemy procesy, czas trwania min 1 jednostka czasu, czas wejscia od 0
 		}//koniec for
+		int zmienna = rozmiar/10;
+		for (int i = 0; i < zmienna ; i++) {
+			this.lista.add(new proces(generator.nextInt(100)+30, generator.nextInt(200)+1, generator.nextInt(10) ) );
+		// tworzymy ma³y zbior procesów d³ugich
+		}//koniec for
+		
 	}//koniec konstruktora
 
 	public ArrayList<proces> getLista() { return lista;}
