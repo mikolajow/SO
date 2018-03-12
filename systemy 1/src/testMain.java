@@ -84,7 +84,7 @@ public class testMain {
 		System.out.println("fcfs " + algFcfs.run());
 		
 		
-		RR alg4 = new RR(kol4 , 15);
+		RR alg4 = new RR(kol4 , 300);
 		System.out.println("RR " + alg4.run());
 	
 		
