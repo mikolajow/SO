@@ -1,0 +1,33 @@
+
+public class proces {
+	
+	
+	
+	
+}//koniec klasy proces
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
