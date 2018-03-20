@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Random;
 
 public class dysk {
@@ -28,6 +30,27 @@ public class dysk {
 	
 	//I SETERY
 	
+	
+	public void sortujPoCzasieWejscia() {
+		Collections.sort(lista, new Comparator<zgloszenie>() {	//sortuje po czasie wejscia
+
+			@Override
+			public int compare(zgloszenie o1, zgloszenie o2) {
+				return o1.getCzasWejscia() - o2.getCzasWejscia();
+			}//koniec compare
+		});//koniec klasy zagniezdzonej
+	}//koniec sortuj po czasie wejscia
+	
+	
+	public void sortujPoMiejscuNaDysku() {
+		Collections.sort(lista, new Comparator<zgloszenie>() {	//sortuje po miejscu na dysku
+
+			@Override
+			public int compare(zgloszenie o1, zgloszenie o2) {
+				return o1.getMiejsceNaDysku() - o2.getMiejsceNaDysku();
+			}//koniec compare
+		});//koniec klasy zagniezdzonej
+	}//koniec sortuj po miejscu na dysku
 	
 	
 }//koniec klasy dysk

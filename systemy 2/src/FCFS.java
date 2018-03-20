@@ -16,7 +16,6 @@ public class FCFS {
 		int przemieszczenie = 0;
 		
 		Collections.sort(lista, new Comparator<zgloszenie>() {	//sortuje po czasie wejscia
-
 			@Override
 			public int compare(zgloszenie o1, zgloszenie o2) {
 				return o1.getCzasWejscia() - o2.getCzasWejscia();
