@@ -22,7 +22,7 @@ public class FCFS {
 			}//koniec compare
 		});//koniec klasy zagniezdzonej
 		
-		int ostatniePolozenie=0;
+		int ostatniePolozenie= lista.get(0).getMiejsceNaDysku() ;
 		
 		for ( zgloszenie z : lista ) {
 			przemieszczenie = przemieszczenie + Math.abs(ostatniePolozenie - z.getMiejsceNaDysku());

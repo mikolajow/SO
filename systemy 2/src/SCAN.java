@@ -5,10 +5,11 @@ import java.util.Comparator;
 public class SCAN {
 	
 	private ArrayList<zgloszenie> lista;
+	private int rozmiarDysku;
 	
 	public SCAN( dysk d ) {
 		this.lista = d.getLista();
-		
+		this.rozmiarDysku = d.getRozmiar();
 	}//koniec konstruktora
 	
 	
@@ -85,7 +86,8 @@ public class SCAN {
 					przemieszczenia = przemieszczenia + Math.abs( listaAktualna.get(aktualnyIndex).getMiejsceNaDysku() -listaAktualna.get(aktualnyIndex + 1).getMiejsceNaDysku()  );
 					listaAktualna.remove(aktualnyIndex);	//aktualny index bez zmian jako ze reszta listy przesunie sie o 1
 				}//koniec if
-				else {
+				else {//jak jestem na ostatnim to
+					przemieszczenia = przemieszczenia + rozmiarDysku - listaAktualna.get(aktualnyIndex).getMiejsceNaDysku(); //bo scan dociera do konca dysku
 					kierunek = "lewo";
 				}//koniec else
 				
@@ -93,6 +95,7 @@ public class SCAN {
 			default:
 				
 				if ( aktualnyIndex == 0 ) {//jeœli jesteœmy na pierwszym indeksie
+					przemieszczenia = przemieszczenia + listaAktualna.get(0).getMiejsceNaDysku();	//bo scan dociera do konca dysku
 					kierunek = "prawo";
 				}//koniec if
 				else {

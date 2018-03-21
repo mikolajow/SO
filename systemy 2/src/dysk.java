@@ -52,6 +52,15 @@ public class dysk {
 		});//koniec klasy zagniezdzonej
 	}//koniec sortuj po miejscu na dysku
 	
+	// ZAK£ADAM ZE 10% ZG£OSZEÑ BÊDZIE PRIORYTETOWYCH
+	public void generujPriorytetowe() {
+		int i = 0;
+		while ( i < lista.size() ) {
+			lista.get(i).setPriorytet(true);
+			i = i + 10 ;
+		}//koniec while
+	}//koniec generuj
+	
 	
 }//koniec klasy dysk
 

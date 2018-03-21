@@ -4,6 +4,7 @@ public class zgloszenie {
 	private int id;
 	private int miejsceNaDysku;
 	private int czasWejscia;
+	private boolean priorytet;
 	
 	public zgloszenie( int id, int miejsce, int czasWej ) {
 		this.id = id;
@@ -29,6 +30,13 @@ public class zgloszenie {
 	
 	//KONIEC------------------
 	
+	public void setPriorytet( boolean b ) {
+		this.priorytet = b;
+	}//koniec set priorytet
+	
+	public boolean getPriorytet() {
+		return priorytet;
+	}//koniec get priorytet
 	
 	
 }//koniec klasy zgloszenie
