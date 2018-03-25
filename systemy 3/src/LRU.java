@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 
-public class OPT {
-	//wywal strone która nie bedzie uzywana w najbli¿szym czasie
-	//algorytm co jakiœ czas musi zrobic sobie przerwe i machn¹æ tarota...
+public class LRU {
+	// LAST RECENTY USED
+	//wywal strone ktora nie by³a uzywana najd³u¿ej
 	
 	private strona[] strony;
 	private int liczbaRamek;
 	private ArrayList<Integer> ListaOdwolan;
 	
-	public OPT(zalozenia z) {
+	public LRU(zalozenia z) {
 		this.liczbaRamek = z.getLiczbaRamek();
 		this.strony = z.getStrony();
 		this.ListaOdwolan = z.getOdwolania();
@@ -37,35 +37,9 @@ public class OPT {
 				if ( stronyWRamie.size() == liczbaRamek ) {
 					//miejsce na algorytm usówania strony
 					
-					int zaIleSiePowtorzy = 0;
-					int czajnik = 0;
-					int odwolanieNajpozniejsze = 0;
 					
 					
 					
-					for ( strona s : stronyWRamie ) {
-						if ( ListaOdwolan.contains(s.getNumer()) ) {
-							czajnik = ListaOdwolan.indexOf(s.getNumer());
-							if ( czajnik > zaIleSiePowtorzy ) { 
-								zaIleSiePowtorzy = czajnik; 
-								odwolanieNajpozniejsze = s.getNumer();
-							}//koniec if wew
-						}//koniec if
-						else {
-							odwolanieNajpozniejsze = s.getNumer();
-							break;
-						}//jak sie nie powtarza wcale to usówamy w³asnie to
-					}//koniec for
-					
-					
-					
-					//suzkam i usówam 
-					for ( strona s : stronyWRamie ) {
-						if ( s.getNumer() == odwolanieNajpozniejsze ) {
-							stronyWRamie.remove(s);
-							break;
-						}//koniec if
-					}//koniec for
 					
 				}//koniec if wewnatrznego
 				stronyWRamie.add(strony[aktualneOdwolanie]);	//dodaje ramke potrzebna do aktualnego odwlania
@@ -79,18 +53,19 @@ public class OPT {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }//koniec klasy
-
-
-
-
-
-
-
-
-
-
-
 
 
 

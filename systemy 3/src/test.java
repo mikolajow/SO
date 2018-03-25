@@ -34,9 +34,16 @@ public class test {
 		odwolania.add(1);
 		
 		zalozenia test = new zalozenia(strony, 3, odwolania);
+		zalozenia test1 = new zalozenia(strony, 3, odwolania);
+		zalozenia test2 = new zalozenia(strony, 3, odwolania);
+		zalozenia test3 = new zalozenia(strony, 3, odwolania);
+		zalozenia test4 = new zalozenia(strony, 3, odwolania);
 		
 		FIFO fif = new FIFO(test);
 		System.out.println(fif.run());
+		
+		OPT opt = new OPT(test1);
+		System.out.println(opt.run());
 		
 		
 		

@@ -26,7 +26,10 @@ public class zalozenia {
 	public zalozenia(strona[] strony , int liczbaRamek, ArrayList<Integer> odwolania) {
 		this.liczbaRamek = liczbaRamek;
 		this.strony = strony;
-		this.odwolania = odwolania;
+		this.odwolania = new ArrayList<>();
+		for ( Integer i : odwolania ) {
+			this.odwolania.add(i);
+		}//koniec for
 	}//koniec konstruktora
 	
 	
