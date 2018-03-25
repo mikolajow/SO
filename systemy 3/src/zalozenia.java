@@ -17,7 +17,7 @@ public class zalozenia {
 		this.odwolania = new ArrayList<>();
 		Random generator =  new Random();
 		for( int i= 0; i<iloscOdwolan;i++ ) {
-			odwolania.add(generator.nextInt(liczbaStron-1));		//bo strony maj¹ numery od 0
+			odwolania.add(generator.nextInt(liczbaStron));		//bo strony maj¹ numery od 0  generator gerenuje inty bez górnej wartosci granicy
 		}//koniec for
 	}//koniec konstruktora
 	

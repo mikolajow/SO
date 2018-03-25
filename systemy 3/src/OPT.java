@@ -59,7 +59,7 @@ public class OPT {
 					
 					
 					
-					//suzkam i usówam 
+					//szukam i usówam 
 					for ( strona s : stronyWRamie ) {
 						if ( s.getNumer() == odwolanieNajpozniejsze ) {
 							stronyWRamie.remove(s);

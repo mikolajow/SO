@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class RANDOM {
 	//wywal losow¹ strone
@@ -36,8 +37,9 @@ public class RANDOM {
 				if ( stronyWRamie.size() == liczbaRamek ) {
 					//miejsce na algorytm usówania strony
 					
-					
-					
+					Random generator = new Random();
+					int indexDoUsuniecia = generator.nextInt(liczbaRamek);
+					stronyWRamie.remove(indexDoUsuniecia);
 					
 					
 				}//koniec if wewnatrznego
