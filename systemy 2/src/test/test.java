@@ -1,3 +1,10 @@
+package test;
+import algorytmy_podstawowe.C_SCAN;
+import algorytmy_podstawowe.EDF;
+import algorytmy_podstawowe.FCFS;
+import algorytmy_podstawowe.FD_SCAN;
+import algorytmy_podstawowe.SCAN;
+import algorytmy_podstawowe.SSTF;
 
 public class test {
 

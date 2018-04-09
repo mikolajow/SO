@@ -1,14 +1,19 @@
+package algorytmy_podstawowe;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class SSTF {
+import test.dysk;
+import test.zgloszenie;
+
+public class SCAN {
 	
 	private ArrayList<zgloszenie> lista;
+	private int rozmiarDysku;
 	
-	public SSTF( dysk d ) {
+	public SCAN( dysk d ) {
 		this.lista = d.getLista();
-		
+		this.rozmiarDysku = d.getRozmiar();
 	}//koniec konstruktora
 	
 	
@@ -48,13 +53,16 @@ public class SSTF {
 		
 		boolean czyDodane = false;
 		
-		int aktualnyIndex = listaAktualna.size()/2;								//zaczniemy ze srodka ( jak w ksi¹¿ce)
+		int aktualnyIndex = listaAktualna.size()/2;		//zak³adam ¿e zaczynam od "œrodka" tak jak w ksi¹¿ce
+		String kierunek = "prawo";						//zak³adamy ze kierunkiem pocz¹tkowym bêdzie "prawo" ->
 		
-		while ( listaAktualna.size() != 1) {		//bo jak zostanie 1 zgloszenie to konczymy ( g³owica juz sie nie przemieszcza )
+		while ( listaAktualna.size() != 1 ) {
+			
+			//dodawanie elementów analogicznie co w sstf
 			
 			if ( (listaAktualna.size() == 2 || counter == iloscPozostalychZgloszen) && !czyDodane ) {//dodaje elementy gdy lista jest prawie pusta lub gdy iloœc wykonanych zg³oszeñ
-				zgloszenie aktualnyElement = listaAktualna.get(aktualnyIndex);						//jest równa iloœci pozosta³ych w liscie 1
-				for ( int i = iloscZgloszenNaStart; i < lista.size(); i++ ) {						//
+				zgloszenie aktualnyElement = listaAktualna.get(aktualnyIndex);						//jest równa iloœci pozosta³ych i liscie 1
+				for ( int i = iloscZgloszenNaStart; i < lista.size(); i++ ) {
 					listaAktualna.add(lista.get(i));
 				}//koniec for
 				
@@ -64,10 +72,10 @@ public class SSTF {
 						return o1.getMiejsceNaDysku() - o2.getMiejsceNaDysku();
 					}//koniec compare
 				});//koniec klasy zagniezdzonej
-				
 				aktualnyIndex = listaAktualna.indexOf(aktualnyElement);
-				czyDodane = true;			//ustawiam czyDodane na true ¿eby nie dodawaæ w nieskoñczonoœæ
+				czyDodane = true;
 				
+				//System.out.println("Przemieszczenia przed dodaniem = " + przemieszczenia);
 				//System.out.println("Po dodaniu ");
 				//for (zgloszenie z : listaAktualna) {
 				//	System.out.println(z);
@@ -76,37 +84,43 @@ public class SSTF {
 			}//koniec if
 			
 			
-			//szczególny przypadek wprowadzony ¿eby uchronic siê przed Null`em gdy wywo³uje index+1 lub index-1
-			if( aktualnyIndex != 0 && aktualnyIndex != (listaAktualna.size()-1) ) {
-				if ( Math.abs(listaAktualna.get(aktualnyIndex).getMiejsceNaDysku() - listaAktualna.get(aktualnyIndex-1).getMiejsceNaDysku() ) < Math.abs(listaAktualna.get(aktualnyIndex).getMiejsceNaDysku() - listaAktualna.get(aktualnyIndex+1).getMiejsceNaDysku() ) ) {					
-					przemieszczenia = przemieszczenia + Math.abs(listaAktualna.get(aktualnyIndex).getMiejsceNaDysku() - listaAktualna.get(aktualnyIndex-1).getMiejsceNaDysku());
-					listaAktualna.remove(aktualnyIndex);
-					aktualnyIndex--;
+			switch (kierunek) {
+			case "prawo" :
+				
+				if ( aktualnyIndex != listaAktualna.size()-1 ) {//jeœli nie jestesmy na ostatnim indeksie to
+					przemieszczenia = przemieszczenia + Math.abs( listaAktualna.get(aktualnyIndex).getMiejsceNaDysku() -listaAktualna.get(aktualnyIndex + 1).getMiejsceNaDysku()  );
+					listaAktualna.remove(aktualnyIndex);	//aktualny index bez zmian jako ze reszta listy przesunie sie o 1
+				}//koniec if
+				else {//jak jestem na ostatnim to
+					przemieszczenia = przemieszczenia + rozmiarDysku - listaAktualna.get(aktualnyIndex).getMiejsceNaDysku(); //bo scan dociera do konca dysku
+					kierunek = "lewo";
+				}//koniec else
+				
+				break;
+			default:
+				
+				if ( aktualnyIndex == 0 ) {//jeœli jesteœmy na pierwszym indeksie
+					przemieszczenia = przemieszczenia + listaAktualna.get(0).getMiejsceNaDysku();	//bo scan dociera do konca dysku
+					kierunek = "prawo";
 				}//koniec if
 				else {
-					przemieszczenia = przemieszczenia + Math.abs(listaAktualna.get(aktualnyIndex).getMiejsceNaDysku() - listaAktualna.get(aktualnyIndex+1).getMiejsceNaDysku());
-					listaAktualna.remove(aktualnyIndex);
-					//aktualnyIndex++;
+					przemieszczenia = przemieszczenia + Math.abs( listaAktualna.get(aktualnyIndex).getMiejsceNaDysku() -listaAktualna.get(aktualnyIndex -1).getMiejsceNaDysku()  );			
+					listaAktualna.remove(aktualnyIndex);	
+					aktualnyIndex--;
 				}//koniec else
-			}//koniec if zwenêtrznego
+				
+				break;
+			}//koniec switch	
 			
-			else if ( aktualnyIndex == 0 ) {
-				przemieszczenia = przemieszczenia + Math.abs(listaAktualna.get(aktualnyIndex).getMiejsceNaDysku() - listaAktualna.get(aktualnyIndex+1).getMiejsceNaDysku());
-				listaAktualna.remove(aktualnyIndex);		//jestem na poczatku lisy, usówam zakonczone zgloszenie i kolejne staje na indeksie 0 wiec nie musze zmieniac aktualnego indexu
-			}//koniec else if
-			else {
-				przemieszczenia = przemieszczenia + Math.abs(listaAktualna.get(aktualnyIndex).getMiejsceNaDysku() - listaAktualna.get(aktualnyIndex-1).getMiejsceNaDysku());
-				listaAktualna.remove(aktualnyIndex);
-				aktualnyIndex--;
-			}//koniec else dla indexu równego size-1
 			counter++;
 		}//koniec while
+		
+		//System.out.println("Licznik =  " + counter);
+		
 		return przemieszczenia;
 	}//koniec run
 	
-}//koniec klasy
-
-
+}//koniec klasy scan
 
 
 

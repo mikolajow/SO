@@ -1,6 +1,10 @@
+package algorytmy_podstawowe;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
+import test.dysk;
+import test.zgloszenie;
 
 public class FCFS {
 	
