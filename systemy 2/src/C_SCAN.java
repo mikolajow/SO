@@ -81,11 +81,15 @@ public class C_SCAN {
 			
 			
 				if ( aktualnyIndex != listaAktualna.size()-1 ) {//jeœli nie jestesmy na ostatnim indeksie to
+																//dodaje do sumu przemieszczen ró¿nice odleg³oœci miêdzy 
+																//aktualnym indexem a nastêpnym
 					przemieszczenia = przemieszczenia + Math.abs( listaAktualna.get(aktualnyIndex).getMiejsceNaDysku() -listaAktualna.get(aktualnyIndex + 1).getMiejsceNaDysku()  );
 					listaAktualna.remove(aktualnyIndex);	//aktualny index bez zmian jako ze reszta listy przesunie sie o 1
 				}//koniec if
 				else {		//jak jesteœmy na koñcu listy ( index = size -1  )
-					przemieszczenia = przemieszczenia + listaAktualna.get(aktualnyIndex).getMiejsceNaDysku() + listaAktualna.get(0).getMiejsceNaDysku();
+					//to do wykonania wszystkich zgloszen do indexu=0 bedzie potrzeba tyle przemieszczen glowicy ile wynosi odleglosc miedzy ostatnim
+					//zgloszeniem a pierwszym
+					przemieszczenia = przemieszczenia + Math.abs( listaAktualna.get(aktualnyIndex).getMiejsceNaDysku() - listaAktualna.get(0).getMiejsceNaDysku() );
 					listaAktualna.remove(aktualnyIndex);
 					aktualnyIndex = 0;
 				}//koniec else

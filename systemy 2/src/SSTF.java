@@ -53,8 +53,8 @@ public class SSTF {
 		while ( listaAktualna.size() != 1) {		//bo jak zostanie 1 zgloszenie to konczymy ( g³owica juz sie nie przemieszcza )
 			
 			if ( (listaAktualna.size() == 2 || counter == iloscPozostalychZgloszen) && !czyDodane ) {//dodaje elementy gdy lista jest prawie pusta lub gdy iloœc wykonanych zg³oszeñ
-				zgloszenie aktualnyElement = listaAktualna.get(aktualnyIndex);						//jest równa iloœci pozosta³ych i liscie 1
-				for ( int i = iloscZgloszenNaStart; i < lista.size(); i++ ) {
+				zgloszenie aktualnyElement = listaAktualna.get(aktualnyIndex);						//jest równa iloœci pozosta³ych w liscie 1
+				for ( int i = iloscZgloszenNaStart; i < lista.size(); i++ ) {						//
 					listaAktualna.add(lista.get(i));
 				}//koniec for
 				
@@ -64,8 +64,9 @@ public class SSTF {
 						return o1.getMiejsceNaDysku() - o2.getMiejsceNaDysku();
 					}//koniec compare
 				});//koniec klasy zagniezdzonej
+				
 				aktualnyIndex = listaAktualna.indexOf(aktualnyElement);
-				czyDodane = true;
+				czyDodane = true;			//ustawiam czyDodane na true ¿eby nie dodawaæ w nieskoñczonoœæ
 				
 				//System.out.println("Po dodaniu ");
 				//for (zgloszenie z : listaAktualna) {
@@ -75,7 +76,7 @@ public class SSTF {
 			}//koniec if
 			
 			
-			
+			//szczególny przypadek wprowadzony ¿eby uchronic siê przed Null`em gdy wywo³uje index+1 lub index-1
 			if( aktualnyIndex != 0 && aktualnyIndex != (listaAktualna.size()-1) ) {
 				if ( Math.abs(listaAktualna.get(aktualnyIndex).getMiejsceNaDysku() - listaAktualna.get(aktualnyIndex-1).getMiejsceNaDysku() ) < Math.abs(listaAktualna.get(aktualnyIndex).getMiejsceNaDysku() - listaAktualna.get(aktualnyIndex+1).getMiejsceNaDysku() ) ) {					
 					przemieszczenia = przemieszczenia + Math.abs(listaAktualna.get(aktualnyIndex).getMiejsceNaDysku() - listaAktualna.get(aktualnyIndex-1).getMiejsceNaDysku());

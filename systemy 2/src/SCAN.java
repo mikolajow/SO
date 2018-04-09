@@ -49,11 +49,12 @@ public class SCAN {
 		
 		boolean czyDodane = false;
 		
-		int aktualnyIndex = listaAktualna.size()/2;	
+		int aktualnyIndex = listaAktualna.size()/2;		//zak³adam ¿e zaczynam od "œrodka" tak jak w ksi¹¿ce
 		String kierunek = "prawo";						//zak³adamy ze kierunkiem pocz¹tkowym bêdzie "prawo" ->
 		
 		while ( listaAktualna.size() != 1 ) {
 			
+			//dodawanie elementów analogicznie co w sstf
 			
 			if ( (listaAktualna.size() == 2 || counter == iloscPozostalychZgloszen) && !czyDodane ) {//dodaje elementy gdy lista jest prawie pusta lub gdy iloœc wykonanych zg³oszeñ
 				zgloszenie aktualnyElement = listaAktualna.get(aktualnyIndex);						//jest równa iloœci pozosta³ych i liscie 1
