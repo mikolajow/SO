@@ -19,16 +19,22 @@ public class FCFS {
 		
 		int przemieszczenie = 0;
 		
-		Collections.sort(lista, new Comparator<zgloszenie>() {	//sortuje po czasie wejscia
+		ArrayList<zgloszenie> aktualnalista = new ArrayList<>();
+		
+		for ( zgloszenie z : lista ) {
+			aktualnalista.add(z);
+		}
+		
+		Collections.sort(aktualnalista, new Comparator<zgloszenie>() {	//sortuje po czasie wejscia
 			@Override
 			public int compare(zgloszenie o1, zgloszenie o2) {
 				return o1.getCzasWejscia() - o2.getCzasWejscia();
 			}//koniec compare
 		});//koniec klasy zagniezdzonej
 		
-		int ostatniePolozenie= lista.get(0).getMiejsceNaDysku() ;
+		int ostatniePolozenie= aktualnalista.get(0).getMiejsceNaDysku() ;
 		
-		for ( zgloszenie z : lista ) {
+		for ( zgloszenie z : aktualnalista ) {
 			przemieszczenie = przemieszczenie + Math.abs(ostatniePolozenie - z.getMiejsceNaDysku());
 			ostatniePolozenie = z.getMiejsceNaDysku();
 		}//koniec for

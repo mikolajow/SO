@@ -19,6 +19,14 @@ public class dysk {
 			this.lista.add(new zgloszenie(generator.nextInt(rozmiar *2 ), generator.nextInt(rozmiar), generator.nextInt(20) ));
 																	//od 0 do rozmiar ale bez rozmiar ¿eby mieci³o sie w indeksie
 		}//koniec for
+		
+		//generuje 10% priorytetowych zg³oszen
+		int i = 0;
+		while ( i < lista.size() ) {
+			lista.get(i).setPriorytet(true);
+			i = i + 10 ;
+		}//koniec while
+		
 	}//koniec konstruktora
 	
 	//GETERY
@@ -53,14 +61,6 @@ public class dysk {
 		});//koniec klasy zagniezdzonej
 	}//koniec sortuj po miejscu na dysku
 	
-	// ZAK£ADAM ZE 10% ZG£OSZEÑ BÊDZIE PRIORYTETOWYCH
-	public void generujPriorytetowe() {
-		int i = 0;
-		while ( i < lista.size() ) {
-			lista.get(i).setPriorytet(true);
-			i = i + 10 ;
-		}//koniec while
-	}//koniec generuj
 	
 	
 }//koniec klasy dysk

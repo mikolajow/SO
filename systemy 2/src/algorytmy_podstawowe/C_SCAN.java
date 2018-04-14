@@ -91,9 +91,7 @@ public class C_SCAN {
 					listaAktualna.remove(aktualnyIndex);	//aktualny index bez zmian jako ze reszta listy przesunie sie o 1
 				}//koniec if
 				else {		//jak jesteœmy na koñcu listy ( index = size -1  )
-					//to do wykonania wszystkich zgloszen do indexu=0 bedzie potrzeba tyle przemieszczen glowicy ile wynosi odleglosc miedzy ostatnim
-					//zgloszeniem a pierwszym
-					przemieszczenia = przemieszczenia + Math.abs( listaAktualna.get(aktualnyIndex).getMiejsceNaDysku() - listaAktualna.get(0).getMiejsceNaDysku() );
+					przemieszczenia++; //przy "skoku" mieliœmy dodaæ 1 do przesuniêæ
 					listaAktualna.remove(aktualnyIndex);
 					aktualnyIndex = 0;
 				}//koniec else
