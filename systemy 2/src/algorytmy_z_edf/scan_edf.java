@@ -94,6 +94,9 @@ public class scan_edf {
 				if ( listaAktualna.get(z).getPriorytet() ) {
 					listaPriorytetowa.add(listaAktualna.get(z));
 					listaAktualna.remove(z);
+					if ( z <= aktualnyIndex  ) {
+						aktualnyIndex--; 	//jak usówamy cos z wczesniejszych indexów to nasz aktualny przesunie sie o 1
+					}//koniec if
 					z--;
 				}//koniec if
 				

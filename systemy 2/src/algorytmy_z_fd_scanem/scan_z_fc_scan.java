@@ -115,8 +115,16 @@ public class scan_z_fc_scan {
 				}//koniec compare to
 			});
 			
+			
+			
+			
 			for ( int z = 0; z < listaPriorytetowa.size()-1; z++ ) {
 				przemieszczenia = przemieszczenia + Math.abs(aktualnaPozycja - listaPriorytetowa.get(z).getMiejsceNaDysku());
+				
+				
+				
+				
+				
 				
 				//usówam wszystkie zgloszenia zwyk³e, które sa pomiêdzy priorytetowymi
 				for ( int i = 0; i <listaAktualna.size()-1; i++ ) {
@@ -147,13 +155,18 @@ public class scan_z_fc_scan {
 						}//koniec if wewnetrznego
 					}//koniec else ( aktualna pozycja jest mniejsza niz miejsce w którym jest z
 				}//koniec for
-				
-				
-				
 				aktualnaPozycja = listaPriorytetowa.get(z).getMiejsceNaDysku();
+				
+				
+				
 				listaPriorytetowa.remove(z);
 				z--;
 			}//koniec for
+			
+			
+			
+			
+			
 			
 			if ( listaAktualna.isEmpty() || listaAktualna.size() == 1 ) {
 				return przemieszczenia;

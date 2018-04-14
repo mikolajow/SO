@@ -23,31 +23,48 @@ public class fcfs_edf {
 		
 		int przemieszczenie = 0;
 		
+		ArrayList<zgloszenie> listaaktualna = new ArrayList<>();
+		ArrayList<zgloszenie> listaPriorytetowa = new ArrayList<>();
 		
+		for ( zgloszenie z : lista ) {
+			listaaktualna.add(z);
+		}
 		
-		Collections.sort(lista, new Comparator<zgloszenie>() {	//sortuje po czasie wejscia, priorytety pierwsze
+		for (int i = 0; i<listaaktualna.size()-1; i++ ) {
+			if (listaaktualna.get(i).getPriorytet()) {
+				listaPriorytetowa.add(listaaktualna.get(i));
+				listaaktualna.remove(i);
+				i--;
+			}//koniec if
+		}//koniec for
+		
+		Collections.sort(listaPriorytetowa, new Comparator<zgloszenie>() {	//sortuje po czasie wejscia, priorytety pierwsze
 			@Override
 			public int compare(zgloszenie o1, zgloszenie o2) {
-				
-				if ( o1.getCzasWejscia() - o2.getCzasWejscia() == 0 && o2.getPriorytet() == true ) {
-					return -1;
-				}else
-					return o1.getCzasWejscia() - o2.getCzasWejscia();
+				return o1.getCzasWejscia() - o2.getCzasWejscia();
 			}//koniec compare
 		});//koniec klasy zagniezdzonej
 		
-		int ostatniePolozenie= lista.get(0).getMiejsceNaDysku() ;
+		Collections.sort(listaaktualna, new Comparator<zgloszenie>() {	//sortuje po czasie wejscia, priorytety pierwsze
+			@Override
+			public int compare(zgloszenie o1, zgloszenie o2) {
+				return o1.getCzasWejscia() - o2.getCzasWejscia();
+			}//koniec compare
+		});//koniec klasy zagniezdzonej
 		
-		for ( zgloszenie z : lista ) {
+		int ostatniePolozenie= listaPriorytetowa.get(0).getMiejsceNaDysku() ;
+		
+		for ( zgloszenie z : listaPriorytetowa ) {
+			przemieszczenie = przemieszczenie + Math.abs(ostatniePolozenie - z.getMiejsceNaDysku());
+			ostatniePolozenie = z.getMiejsceNaDysku();
+		}//koniec for
+		
+		for ( zgloszenie z : listaaktualna ) {
 			przemieszczenie = przemieszczenie + Math.abs(ostatniePolozenie - z.getMiejsceNaDysku());
 			ostatniePolozenie = z.getMiejsceNaDysku();
 		}//koniec for
 		
 		return przemieszczenie;
-		
-		
-		
-		
 		
 	}//koniec run
 	

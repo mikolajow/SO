@@ -54,6 +54,11 @@ public class fcfc_z_fc_scan {
 			}//koniec compare to
 		});
 		
+		
+		
+		
+		
+		
 		for ( int z = 0; z < listaPriorytetowa.size()-1; z++ ) {
 			przemieszczenie = przemieszczenie + Math.abs(ostatniePolozenie - listaPriorytetowa.get(z).getMiejsceNaDysku());
 			
@@ -76,17 +81,17 @@ public class fcfc_z_fc_scan {
 				}//koniec else ( aktualna pozycja jest mniejsza niz miejsce w którym jest z
 			}//koniec for
 			
-			
-			
 			ostatniePolozenie = listaPriorytetowa.get(z).getMiejsceNaDysku();
 			listaPriorytetowa.remove(z);
 			z--;
 		}//koniec for
 			
 		
-		//zwyk³y fcfs
-		//System.out.println("rozmiar aktualnej listy z fcfs po fd-scanie = "+ listaAktualna.size() + "\n");
 		
+		
+		//zwyk³y fcfs
+		
+		//System.out.println("rozmiar aktualnej listy z fcfs po fd-scanie = "+ listaAktualna.size() + "\n");
 		
 		Collections.sort(listaAktualna, new Comparator<zgloszenie>() {	//sortuje po czasie wejscia
 			@Override
