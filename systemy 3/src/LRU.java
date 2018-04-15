@@ -77,6 +77,7 @@ public class LRU {
 					s.setCzasOstatniegoUzycia(czajnik +1);			//zwiêkszam czas ostatniego uzycia kazdej strony o 1
 				}//koniec for
 				
+				//po ziwêkszeniu czasu ostatniego uzycia kazdej strony dodaje najnowsz¹
 				stronyWRamie.add(strony[aktualneOdwolanie]);	//dodaje ramke potrzebna do aktualnego odwlania
 			}//koniec else
 			
