@@ -45,7 +45,7 @@ public class fcfs_edf {
 			}//koniec compare
 		});//koniec klasy zagniezdzonej
 		
-		Collections.sort(listaaktualna, new Comparator<zgloszenie>() {	//sortuje po czasie wejscia, priorytety pierwsze
+		Collections.sort(listaaktualna, new Comparator<zgloszenie>() {	//sortuje po czasie wejscia
 			@Override
 			public int compare(zgloszenie o1, zgloszenie o2) {
 				return o1.getCzasWejscia() - o2.getCzasWejscia();

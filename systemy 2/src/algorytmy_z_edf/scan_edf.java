@@ -105,11 +105,21 @@ public class scan_edf {
 			
 			aktualnaPozycja = listaAktualna.get(aktualnyIndex).getMiejsceNaDysku();
 			
+			//sort po czsie wejscia
+			Collections.sort(listaPriorytetowa, new Comparator<zgloszenie>() {
+				@Override
+				public int compare(zgloszenie o1, zgloszenie o2) {
+					// TODO Auto-generated method stub
+					return o1.getCzasWejscia()-o2.getCzasWejscia();
+				}//koniec compare to
+			});
+			
 			for ( int z = 0; z < listaPriorytetowa.size(); z++ ) {
 				przemieszczenia = przemieszczenia + Math.abs(aktualnaPozycja - listaPriorytetowa.get(z).getMiejsceNaDysku());
 				aktualnaPozycja = listaPriorytetowa.get(z).getMiejsceNaDysku();
 				listaPriorytetowa.remove(z);
 				z--;
+				//System.out.println("po obliczeniu priorytetowych = " + przemieszczenia);
 			}//koniec for
 			
 			

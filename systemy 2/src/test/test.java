@@ -12,8 +12,10 @@ public class test {
 		int rozmiarDysku=0;
 		int liczbaPowtorzen=0;
 		
-		
-		int srednia = 0;
+		System.out.println("Za³o¿enia symulacji : ");
+		System.out.println("Liczba zg³oszeñ = oko³o 2/3 rozmiaru dysku");
+		System.out.println("Priorytety stanowi¹ oko³o 5% zg³oszeñ priorytetowych");
+		System.out.println();
 		
 		try ( Scanner s = new Scanner(System.in) ){
 			
@@ -30,10 +32,80 @@ public class test {
 		}
 		
 		
+		long sredniafcfs = 0;
+		long sredniascan = 0;
+		long sredniacscan = 0;
+		long sredniasstf = 0;
+		
+		long sredniafcfse = 0;
+		long sredniascane = 0;
+		long sredniacscane = 0;
+		long sredniasstfe = 0;
+		
+		long sredniafcfsf = 0;
+		long sredniascanf = 0;
+		long sredniacscanf = 0;
+		long sredniasstff = 0;
+		
+		
+		
+		for (int i = 0; i<liczbaPowtorzen; i++) {
+			
+			dysk nowy = new dysk(rozmiarDysku);
+			
+			FCFS f = new FCFS(nowy);
+			sredniafcfs = sredniafcfs + f.run();
+			SSTF ss = new SSTF(nowy);
+			sredniasstf = sredniasstf + ss.run();
+			SCAN scan = new SCAN(nowy);
+			sredniascan = sredniascan + scan.run();
+			C_SCAN C_scan = new C_SCAN(nowy);;
+			sredniacscan = sredniacscan + C_scan.run();
+			
+			fcfs_edf fcfsedf = new fcfs_edf(nowy);
+			sredniafcfse = sredniafcfse + fcfsedf.run();
+			sstf_edf sstfedf = new sstf_edf(nowy);
+			sredniasstfe = sredniasstfe + sstfedf.run();
+			scan_edf scanedf = new scan_edf(nowy);
+			sredniascane = sredniascane + scanedf.run();
+			c_scan_edf cscanedf = new c_scan_edf(nowy);
+			sredniacscane = sredniacscane + cscanedf.run();
+			
+			fcfc_z_fc_scan fcfsfdsan = new fcfc_z_fc_scan(nowy);
+			sredniafcfsf = sredniafcfsf + fcfsfdsan.run();
+			ssjf_z_fc_scan sstffdscan = new ssjf_z_fc_scan(nowy);
+			sredniasstff = sredniasstff + sstffdscan.run();
+			scan_z_fc_scan scanfdscan = new scan_z_fc_scan(nowy);
+			sredniascanf = sredniascanf + scanfdscan.run();
+			c_scan_z_fc_scan cscanfdscan = new c_scan_z_fc_scan(nowy);
+			sredniacscanf = sredniacscanf + cscanfdscan.run();
+			
+		}//koniec for
+		
+		System.out.println();
+		System.out.println("Prezmieszczenia FCFS = " + sredniafcfs/liczbaPowtorzen );
+		System.out.println( "Prezmieszczenia SSTF = " +  sredniasstf/liczbaPowtorzen );
+		System.out.println( "Prezmieszczenia SCAN = " + sredniascan/liczbaPowtorzen);
+		System.out.println( "Prezmieszczenia C_SCAN = " + sredniacscan/liczbaPowtorzen);
+		
+		System.out.println();
+		System.out.println( "Prezmieszczenia fcfs z edf = " + sredniafcfse/liczbaPowtorzen);
+		System.out.println( "Prezmieszczenia sstf z edf = " + sredniasstfe/liczbaPowtorzen );
+		System.out.println( "Prezmieszczenia scan z edf = " + sredniascane/liczbaPowtorzen );
+		System.out.println( "Prezmieszczenia c-scan z edf = " + sredniacscane/liczbaPowtorzen );
+		
+		System.out.println();
+		System.out.println( "Prezmieszczenia fcfs z fd-scan = " + sredniafcfsf/liczbaPowtorzen );
+		System.out.println( "Prezmieszczenia sstf z fd-scan = " + sredniasstff/liczbaPowtorzen );
+		System.out.println( "Prezmieszczenia scan z fd-scan = " + sredniascanf/liczbaPowtorzen );
+		System.out.println( "Prezmieszczenia c-scan z fd-scan = " + sredniacscanf/liczbaPowtorzen );
+		
+		
+		/*
+		dysk nowy = new dysk(rozmiarDysku);
 		
 		//
 		for ( int i = 0; i <=liczbaPowtorzen; i++ ) {
-			dysk nowy = new dysk(rozmiarDysku);
 			FCFS f = new FCFS(nowy);
 			srednia = srednia + f.run();
 		}
@@ -43,7 +115,6 @@ public class test {
 		
 		//
 		for ( int i = 0; i <=liczbaPowtorzen; i++ ) {
-			dysk nowy = new dysk(rozmiarDysku);
 			SSTF ss = new SSTF(nowy);
 			srednia = srednia + ss.run();
 		}
@@ -53,7 +124,6 @@ public class test {
 		
 		//
 		for ( int i = 0; i <=liczbaPowtorzen; i++ ) {
-			dysk nowy = new dysk(rozmiarDysku);
 			SCAN scan = new SCAN(nowy);
 			srednia = srednia + scan.run();
 		}
@@ -63,7 +133,6 @@ public class test {
 		
 		//
 		for ( int i = 0; i <=liczbaPowtorzen; i++ ) {
-			dysk nowy = new dysk(rozmiarDysku);
 			C_SCAN C_scan = new C_SCAN(nowy);;
 			srednia = srednia + C_scan.run();
 		}
@@ -75,7 +144,6 @@ public class test {
 		
 		//
 		for ( int i = 0; i <=liczbaPowtorzen; i++ ) {
-			dysk nowy = new dysk(rozmiarDysku);
 			fcfs_edf fcfsedf = new fcfs_edf(nowy);
 			srednia = srednia + fcfsedf.run();
 		}
@@ -86,7 +154,6 @@ public class test {
 		
 		//
 		for ( int i = 0; i <=liczbaPowtorzen; i++ ) {
-			dysk nowy = new dysk(rozmiarDysku);
 			sstf_edf sstfedf = new sstf_edf(nowy);
 			srednia = srednia + sstfedf.run();
 		}
@@ -96,7 +163,6 @@ public class test {
 		
 		//
 		for ( int i = 0; i <=liczbaPowtorzen; i++ ) {
-			dysk nowy = new dysk(rozmiarDysku);
 			scan_edf scanedf = new scan_edf(nowy);
 			srednia = srednia + scanedf.run();
 		}
@@ -107,7 +173,6 @@ public class test {
 		
 		//
 		for ( int i = 0; i <=liczbaPowtorzen; i++ ) {
-			dysk nowy = new dysk(rozmiarDysku);
 			c_scan_edf cscanedf = new c_scan_edf(nowy);
 			srednia = srednia + cscanedf.run();
 		}
@@ -119,7 +184,6 @@ public class test {
 		
 		//
 		for ( int i = 0; i <=liczbaPowtorzen; i++ ) {
-			dysk nowy = new dysk(rozmiarDysku);
 			fcfc_z_fc_scan fcfsfdsan = new fcfc_z_fc_scan(nowy);
 			srednia = srednia + fcfsfdsan.run();
 		}
@@ -131,7 +195,6 @@ public class test {
 		
 		//
 		for ( int i = 0; i <=liczbaPowtorzen; i++ ) {
-			dysk nowy = new dysk(rozmiarDysku);
 			ssjf_z_fc_scan sstffdscan = new ssjf_z_fc_scan(nowy);
 			srednia = srednia + sstffdscan.run();
 		}
@@ -143,7 +206,6 @@ public class test {
 		
 		//
 		for ( int i = 0; i <=liczbaPowtorzen; i++ ) {
-			dysk nowy = new dysk(rozmiarDysku);
 			scan_z_fc_scan scanfdscan = new scan_z_fc_scan(nowy);
 			srednia = srednia + scanfdscan.run();
 		}
@@ -155,7 +217,6 @@ public class test {
 		
 		//
 		for ( int i = 0; i <=liczbaPowtorzen; i++ ) {
-			dysk nowy = new dysk(rozmiarDysku);
 			c_scan_z_fc_scan cscanfdscan = new c_scan_z_fc_scan(nowy);
 			srednia = srednia + cscanfdscan.run();
 		}

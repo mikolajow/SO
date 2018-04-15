@@ -102,6 +102,15 @@ public class c_scan_edf {
 				
 			}//koniec for
 			
+			//sort po czsie wejscia
+			Collections.sort(listaPriorytetowa, new Comparator<zgloszenie>() {
+				@Override
+				public int compare(zgloszenie o1, zgloszenie o2) {
+					// TODO Auto-generated method stub
+					return o1.getCzasWejscia()-o2.getCzasWejscia();
+				}//koniec compare to
+			});
+			
 			
 			aktualnaPozycja = listaAktualna.get(aktualnyIndex).getMiejsceNaDysku();
 			

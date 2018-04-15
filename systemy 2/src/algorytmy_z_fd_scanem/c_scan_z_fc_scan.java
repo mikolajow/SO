@@ -152,6 +152,26 @@ public class c_scan_z_fc_scan {
 				
 				
 				
+				//usówam wszystkie zgloszenia prio, które sa pomiêdzy prio
+				for ( int i = 0; i <listaPriorytetowa.size()-1; i++ ) {
+					if ( aktualnaPozycja < listaPriorytetowa.get(z).getMiejsceNaDysku()) {
+						if ( listaPriorytetowa.get(i).getMiejsceNaDysku() > aktualnaPozycja && listaPriorytetowa.get(i).getMiejsceNaDysku() < listaPriorytetowa.get(z).getMiejsceNaDysku()) {
+							listaPriorytetowa.remove(i);
+							i--;
+						}//koniec if wewnetrznego
+					}//koniec if
+					else {
+						if ( listaPriorytetowa.get(i).getMiejsceNaDysku() < aktualnaPozycja && listaPriorytetowa.get(i).getMiejsceNaDysku() > listaPriorytetowa.get(z).getMiejsceNaDysku()) {
+							listaPriorytetowa.remove(i);
+							i--;
+						}//koniec if wewnetrznego
+					}//koniec else ( aktualna pozycja jest mniejsza niz miejsce w którym jest z
+				}//koniec for
+				
+				
+				
+				
+				
 				aktualnaPozycja = listaPriorytetowa.get(z).getMiejsceNaDysku();
 				listaPriorytetowa.remove(z);
 				z--;

@@ -106,7 +106,7 @@ public class scan_z_fc_scan {
 			
 			aktualnaPozycja = listaAktualna.get(aktualnyIndex).getMiejsceNaDysku();
 			
-			//sort po czsie wejscia, najstarsze priorytety na pocz¹tku
+			//sort po czsie wejscia
 			Collections.sort(listaPriorytetowa, new Comparator<zgloszenie>() {
 				@Override
 				public int compare(zgloszenie o1, zgloszenie o2) {
@@ -120,11 +120,6 @@ public class scan_z_fc_scan {
 			
 			for ( int z = 0; z < listaPriorytetowa.size()-1; z++ ) {
 				przemieszczenia = przemieszczenia + Math.abs(aktualnaPozycja - listaPriorytetowa.get(z).getMiejsceNaDysku());
-				
-				
-				
-				
-				
 				
 				//usówam wszystkie zgloszenia zwyk³e, które sa pomiêdzy priorytetowymi
 				for ( int i = 0; i <listaAktualna.size()-1; i++ ) {
@@ -155,13 +150,40 @@ public class scan_z_fc_scan {
 						}//koniec if wewnetrznego
 					}//koniec else ( aktualna pozycja jest mniejsza niz miejsce w którym jest z
 				}//koniec for
+				
+				
+				
+				
+				//usówam wszystkie zgloszenia prio, które sa pomiêdzy prio
+				for ( int i = 0; i <listaPriorytetowa.size()-1; i++ ) {
+					if ( aktualnaPozycja < listaPriorytetowa.get(z).getMiejsceNaDysku()) {
+						if ( listaPriorytetowa.get(i).getMiejsceNaDysku() > aktualnaPozycja && listaPriorytetowa.get(i).getMiejsceNaDysku() < listaPriorytetowa.get(z).getMiejsceNaDysku()) {
+							listaPriorytetowa.remove(i);
+							i--;
+						}//koniec if wewnetrznego
+					}//koniec if
+					else {
+						if ( listaPriorytetowa.get(i).getMiejsceNaDysku() < aktualnaPozycja && listaPriorytetowa.get(i).getMiejsceNaDysku() > listaPriorytetowa.get(z).getMiejsceNaDysku()) {
+							listaPriorytetowa.remove(i);
+							i--;
+						}//koniec if wewnetrznego
+					}//koniec else ( aktualna pozycja jest mniejsza niz miejsce w którym jest z
+				}//koniec for
+				
+				
+				
+				
+				
 				aktualnaPozycja = listaPriorytetowa.get(z).getMiejsceNaDysku();
-				
-				
 				
 				listaPriorytetowa.remove(z);
 				z--;
+				//System.out.println("po obliczeniu priorytetowych = " + przemieszczenia);
 			}//koniec for
+			
+			
+			
+			
 			
 			
 			

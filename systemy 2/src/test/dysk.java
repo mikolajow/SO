@@ -22,11 +22,13 @@ public class dysk {
 		
 		//generuje 10% priorytetowych zg³oszen
 		int i = 0;
+		//int counter = 0;
 		while ( i < lista.size() ) {
 			lista.get(i).setPriorytet(true);
-			i = i + 10 ;
+			i = i + 20 ;
+			//counter++;
 		}//koniec while
-		
+		//System.out.println("liczba prio = " + counter);
 	}//koniec konstruktora
 	
 	//GETERY
