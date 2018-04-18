@@ -1,26 +1,39 @@
+package inne;
+
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class zalozenia {
+public class proces {
 	
-	private strona[] strony;
-	private int liczbaRamek;
+	private strona[] tablicaStron;
+	private int iloscStron;
+	private int numerPrierwszejStrony;
+	private int numerOstatniejStrony;
 	private ArrayList<Integer> odwolania;
+	private ArrayList<Integer> zbiorRoboczy;; 
+	private int iloscBledowStrony;
+	
 	
 	//KONSTRUKTOR RANODMOWY
-	public zalozenia(int liczbaStron, int liczbaRamek, int iloscOdwolan) {
-		this.liczbaRamek = liczbaRamek;
-		this.strony = new strona[liczbaStron];
-		for(int i = 0; i<strony.length; i++) {
-			strony[i] = new strona(i);
+	
+	public proces(int numerPierwszejStrony, int iloscStron, int iloscOdwolan) {
+		this.iloscBledowStrony = 0;
+		this.numerPrierwszejStrony = numerPierwszejStrony;
+		this.iloscStron = iloscStron;
+		this.tablicaStron = new strona[iloscStron];
+		
+		//nie od zera tylko od numer pierwszej strony
+		int a = numerPierwszejStrony;
+		for(int j = 0 ; j<tablicaStron.length; j++) {
+			tablicaStron[j] = new strona(a);
+			a++;
 		}//koniec for
+		this.numerOstatniejStrony = tablicaStron[tablicaStron.length-1].getNumer();
+		
 		
 		//LOKALNOSC ODWO£AÑ
 		
-		int numerPierwszejStrony = 0;
-		int iloscStron = liczbaStron;
-		int numerOstatniejStrony = strony[strony.length-1].getNumer();
+		
 		
 		this.odwolania = new ArrayList<>();
 		
@@ -33,7 +46,7 @@ public class zalozenia {
 		
 		int ostatniaDodanaStrona = pierwszaStrona;
 		
-		for( int i= 1; i <= iloscOdwolan; i++ ) {	//i = 1 bo pierwsza strona juz dodana
+		for( int i= 1; i < iloscOdwolan; i++ ) {	//i = 1 bo pierwsza strona juz dodana
 			
 			double prawdopodobienstwo = Math.random()*100;
 			double prawdopodobienstwo2 = Math.random()*100;	
@@ -44,7 +57,7 @@ public class zalozenia {
 				if ( prawdopodobienstwo >= 0 && prawdopodobienstwo < 90 ) {
 					//np gdy ma 5 stron od 9 do 13 ( 9,10,11,12,13 )  5+9-1=13
 					if ( ostatniaDodanaStrona == iloscStron + numerPierwszejStrony -1 ) {
-						odwolania.add(0);	//zapêtlamy
+						odwolania.add(numerPierwszejStrony);	//zapêtlamy
 						ostatniaDodanaStrona = numerPierwszejStrony;
 					}//koniec if
 					else {
@@ -120,51 +133,64 @@ public class zalozenia {
 		
 	// KONIEC LOKALNOSCI ODWOLAN ----------------------------------
 	
-		
-	}//koniec konstruktora
-	
-	// KONSTRUKTOR TESTOWY
-	
-	public zalozenia(strona[] strony , int liczbaRamek, ArrayList<Integer> odwolania) {
-		this.liczbaRamek = liczbaRamek;
-		this.strony = strony;
-		this.odwolania = new ArrayList<>();
-		for ( Integer i : odwolania ) {
-			this.odwolania.add(i);
-		}//koniec for
-	}//koniec konstruktora
-	
-	// KONSTRUKTOR KOPIUJ¥CY
-	
-	public zalozenia( zalozenia dane) {
-		this.liczbaRamek = dane.getLiczbaRamek();
-		this.strony = dane.getStrony();
-		
-		this.odwolania = new ArrayList<>();
-		
-		for ( Integer i : dane.getOdwolania() ) {
-			odwolania.add(i);
-		}//koniec for
 	}//koniec konstruktora
 	
 	
-	// GETERY SETTERY
-	public strona[] getStrony() { return strony; }
-	public int getLiczbaRamek() { return liczbaRamek; }
+	
+	
+	
+	
+	
+	public int getIloscBledowStrony() {
+		return iloscBledowStrony;
+	}
+	public void setIloscBledowStrony(int iloscBledowStrony) {
+		this.iloscBledowStrony = iloscBledowStrony;
+	}
+
+	// GETERY
+	public strona[] getStrony() { return tablicaStron; }
 	public ArrayList<Integer> getOdwolania() { return odwolania; }
+	public int getIloscStron() {return iloscStron;}
+	public int getNumerPrierwszejStrony() {return numerPrierwszejStrony;}
+	public int getNumerOstatniejStrony() {return numerOstatniejStrony;}
+	public ArrayList<Integer> getZbiorRoboczy() {return zbiorRoboczy;}
 	
-	public void setStrony(strona[] strony) { this.strony = strony; }
-	public void setLiczbaRamek(int liczbaRamek) { this.liczbaRamek = liczbaRamek; }
+	/*
+	// SETTERY
+	public void setStrony(strona[] strony) { this.tablicaStron = strony; }
 	public void setOdwolania(ArrayList<Integer> odwolania) { this.odwolania = odwolania; }
+	public void setIloscStron(int iloscStron) {this.iloscStron = iloscStron;}
+	public void setNumerPrierwszejStrony(int numerPrierwszejStrony) {this.numerPrierwszejStrony = numerPrierwszejStrony;}
+	public void setNumerOstatniejStrony(int numerOstatniejStrony) {this.numerOstatniejStrony = numerOstatniejStrony;}
+	public void setZbiorRoboczy(ArrayList<Integer> zbiorRoboczy) {this.zbiorRoboczy = zbiorRoboczy;}
+	*/
 	
-	
-	
-	
-	
-	
+	@Override
+	public String toString() {
+		return "proces [iloscStron= " + iloscStron + ", numerPrierwszejStrony= " + numerPrierwszejStrony + "]";
+	}//koniec to string
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	
 }//koniec klasy
+
+
 
 
 

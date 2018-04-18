@@ -30,7 +30,7 @@ public class scan_edf {
 			}//koniec compare
 		});//koniec klasy zagniezdzonej
 		
-		int iloscZgloszenNaStart = lista.size()*8/10;
+		int iloscZgloszenNaStart = lista.size()*6/10;
 		int counter = 0;
 		int iloscPozostalychZgloszen = lista.size() - iloscZgloszenNaStart;
 		
