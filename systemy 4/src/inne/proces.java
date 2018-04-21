@@ -5,18 +5,24 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class proces {
 	
-	private strona[] tablicaStron;
-	private int iloscStron;
+	private strona[] tablicaStron;				//numery stron danego procesu
+	private int iloscStron;						//ilosc róznych numerów stron
 	private int numerPrierwszejStrony;
 	private int numerOstatniejStrony;
-	private ArrayList<Integer> odwolania;
-	private ArrayList<Integer> zbiorRoboczy;; 
-	private int iloscBledowStrony;
-	
+	private ArrayList<Integer> odwolania;		//odwolania procesu generowane z zasada lokalnosci
+	private ArrayList<Integer> zbiorRoboczy;; 	//wykorzystywany przy modelu strefowym
+	private int iloscBledowStrony;				//ile bledow ztrony wystapi przy obslydze procesu
+	private int aktualnaLiczbaRamek;
 	
 	//KONSTRUKTOR RANODMOWY
 	
+
+
+
+
 	public proces(int numerPierwszejStrony, int iloscStron, int iloscOdwolan) {
+		this.zbiorRoboczy = new ArrayList<>();
+		this.aktualnaLiczbaRamek = 0;
 		this.iloscBledowStrony = 0;
 		this.numerPrierwszejStrony = numerPierwszejStrony;
 		this.iloscStron = iloscStron;
@@ -135,18 +141,28 @@ public class proces {
 	
 	}//koniec konstruktora
 	
+	//konstruktor kopiuj¹cy
+	public proces(proces p) {
+		this.tablicaStron = p.getStrony();
+		this.iloscStron = p.getIloscStron();
+		this.numerPrierwszejStrony = p.getNumerPrierwszejStrony();
+		this.numerOstatniejStrony = p.getNumerOstatniejStrony();
+		this.iloscBledowStrony = 0;
+		this.aktualnaLiczbaRamek = 0;
+		this.odwolania = new ArrayList<>();
+		this.zbiorRoboczy = new ArrayList<>();
+		for ( Integer i : p.getOdwolania() ) {
+			this.odwolania.add(i);
+		}//koniec for
+	}//koniec kopiuj¹cego
 	
 	
 	
+	public int getAktualnaLiczbaRamek() {return aktualnaLiczbaRamek;}
+	public void setAktualnaLiczbaRamek(int aktualnaLiczbaRamek) {this.aktualnaLiczbaRamek = aktualnaLiczbaRamek;}
 	
-	
-	
-	public int getIloscBledowStrony() {
-		return iloscBledowStrony;
-	}
-	public void setIloscBledowStrony(int iloscBledowStrony) {
-		this.iloscBledowStrony = iloscBledowStrony;
-	}
+	public int getIloscBledowStrony() {return iloscBledowStrony;}
+	public void setIloscBledowStrony(int iloscBledowStrony) {this.iloscBledowStrony = iloscBledowStrony;}
 
 	// GETERY
 	public strona[] getStrony() { return tablicaStron; }

@@ -11,34 +11,30 @@ public class ciagGlobalny {
 
 
 	public ciagGlobalny( ArrayList<proces> p ) {
-		this.lisatProcesow =(ArrayList<proces>)p.clone();
+		this.lisatProcesow = new ArrayList<>();
+		for(proces pro : p) {
+			this.lisatProcesow.add(new proces(pro));
+		}//koniec for
 		this.listaWszystkichOdwolan = new ArrayList<>();
 		int i = 0;
+		ArrayList<proces> listaPomocnicza = new ArrayList<>();
+		for(proces pro : p) {
+			listaPomocnicza.add(new proces(pro));
+		}//koniec for
 		//pierw dodajemy zgloszenie o indeksie 0 z kazdego procesu, potem o indeksie 1 z kazdego procesu itd...
-		while ( !p.isEmpty() ) {
-		for ( int j = 0; j < p.size(); j++ ) {
-			proces aktualny = p.get(j);
+		while ( !listaPomocnicza.isEmpty() ) {
+		for ( int j = 0; j < listaPomocnicza.size(); j++ ) {
+			proces aktualny = listaPomocnicza.get(j);
 				if ( i < aktualny.getOdwolania().size() ) {
 					listaWszystkichOdwolan.add(aktualny.getOdwolania().get(i));		
 				}//koniec if
 				else {
-					p.remove(aktualny);		//jesli wszystkie odwolania od danego procesu zosta³ dodane do ciagu to usun proces
+					listaPomocnicza.remove(aktualny);		//jesli wszystkie odwolania od danego procesu zosta³ dodane do ciagu to usun proces
 				}//koniec else
 			}//koniec for
 		i++;
 		}//koniec while
 	}//koniec konstruktora
-	
-	
-	//konstruktor kopiuj¹cy
-	//konstruktor kopiujacy
-	public ciagGlobalny( ciagGlobalny c ) {
-		this.lisatProcesow = c.getLisatProcesow();
-		this.listaWszystkichOdwolan = new ArrayList<>();
-		for ( Integer i : c.getListaWszystkichOdwolan() ) {
-			listaWszystkichOdwolan.add(i);
-		}//koniec for
-	}//koniec konstruktora kopiujacego
 	
 	
 	
