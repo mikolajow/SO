@@ -13,14 +13,17 @@ public class proces {
 	private ArrayList<Integer> zbiorRoboczy;; 	//wykorzystywany przy modelu strefowym
 	private int iloscBledowStrony;				//ile bledow ztrony wystapi przy obslydze procesu
 	private int aktualnaLiczbaRamek;
-	
+	private ArrayList<Boolean> historiaBledow;	//uzywane w sterowaniu czêstoœci¹ b³êdów, jeœli ostatnie odwolanie wywo³a³o b³¹d strony dodaje wartoœæ false
+												//czêstoœc b³êdów bêdzie liczona = iloœc wartoœci false w liœcie / iloœæ wszystkich wartoœci w liœcie * 100
 	//KONSTRUKTOR RANODMOWY
 	
-
-
-
-
+	
+	
+	
+	
+	
 	public proces(int numerPierwszejStrony, int iloscStron, int iloscOdwolan) {
+		this.historiaBledow = new ArrayList<>();
 		this.zbiorRoboczy = new ArrayList<>();
 		this.aktualnaLiczbaRamek = 0;
 		this.iloscBledowStrony = 0;
@@ -151,12 +154,15 @@ public class proces {
 		this.aktualnaLiczbaRamek = 0;
 		this.odwolania = new ArrayList<>();
 		this.zbiorRoboczy = new ArrayList<>();
+		this.historiaBledow = new ArrayList<>();
 		for ( Integer i : p.getOdwolania() ) {
 			this.odwolania.add(i);
 		}//koniec for
 	}//koniec kopiuj¹cego
 	
 	
+	public ArrayList<Boolean> getHistoriaBledow() {return historiaBledow;}
+	public void setHistoriaBledow(ArrayList<Boolean> historiaBledow) {this.historiaBledow = historiaBledow;}
 	
 	public int getAktualnaLiczbaRamek() {return aktualnaLiczbaRamek;}
 	public void setAktualnaLiczbaRamek(int aktualnaLiczbaRamek) {this.aktualnaLiczbaRamek = aktualnaLiczbaRamek;}
@@ -186,22 +192,8 @@ public class proces {
 	public String toString() {
 		return "proces [iloscStron= " + iloscStron + ", numerPrierwszejStrony= " + numerPrierwszejStrony + "]";
 	}//koniec to string
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
+	
 	
 	
 }//koniec klasy

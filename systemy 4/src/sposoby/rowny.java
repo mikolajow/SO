@@ -29,11 +29,17 @@ public class rowny {
 		int liczbaRamekNaProces = liczbaRamek/listaWszystkichProcesow.size();
 		if ( liczbaRamekNaProces == 0 ) { return null; }
 		
-
+		//liczba ramek na proces
+		liczbaRamekNaProces = liczbaRamek/listaWszystkichProcesow.size();
+		
+		//ustawiam kazdemu procesowi liczbe ramek
+		for ( int i = 0; i < listaWszystkichProcesow.size(); i++) {
+			listaWszystkichProcesow.get(i).setAktualnaLiczbaRamek(liczbaRamekNaProces);
+		}//koniec for
 		
 		while ( !listaWszystkichProcesow.isEmpty() ) {
 			
-			//liczba ramek na proces bedzie sie zmieniac w zaleznosci ile procesow zostalo jeszcze od wykonania
+			//liczba ramek na proces
 			liczbaRamekNaProces = liczbaRamek/listaWszystkichProcesow.size();
 			
 			//ustawiam kazdemu procesowi liczbe ramek
