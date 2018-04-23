@@ -72,7 +72,7 @@ public class test {
 		*/
 		
 		
-		/*
+		
 		System.out.println("SYMULACJE");
 		
 		FIFO fif1 = new FIFO(symulacja);
@@ -91,8 +91,8 @@ public class test {
 		System.out.println("wynik drugiej szansy = " + lruA.run());
 		
 		
-		*/
 		
+		/*
 		int liczbaStron = 0;
 		int liczbaRamek = 0;
 		int liczbaOdwolan = 0;
@@ -131,7 +131,7 @@ public class test {
 		
 		LRU_aproksymowany lruA2 = new LRU_aproksymowany(zal5);
 		System.out.println("wynik drugiej szansy = " + lruA2.run());
-		
+		*/
 		
 		
 		

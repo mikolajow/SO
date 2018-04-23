@@ -89,18 +89,6 @@ public class LRU {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }//koniec klasy
 
 

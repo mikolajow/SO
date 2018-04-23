@@ -32,7 +32,7 @@ public class LRU_aproksymowany {
 				if( s.getNumer() == aktualneOdwolanie ) {		//sprawdzam czy aktualnie potrzebna strona juz jest w pamieci fizycznej
 					czyJuzJest = true;
 					s.setCzyOstatnioU¿ywana(true); 				//zapisuje ze strona by³a ostatnio uzywana
-				}//koniec if
+				}//koniec if									//bit odniesienia na 1
 			}//koniec for
 			
 			if ( czyJuzJest ) {
@@ -58,16 +58,11 @@ public class LRU_aproksymowany {
 						}//koniec if
 						else {//jesli nie by³a ostatnio uzywana ( bit odniesienia równy 0 )
 							numerStronyDoUsuniecia = stronyWRamie.get(s).getNumer();
+							stronyWRamie.remove(0);
+							break;
 						}//koniec else
 					}//koniec for
 					
-					//szukam i usówam 
-					for ( strona s : stronyWRamie ) {
-						if ( s.getNumer() == numerStronyDoUsuniecia ) {
-							stronyWRamie.remove(s);
-							break;
-						}//koniec if
-					}//koniec for
 				}//koniec if wewnetrznego
 				
 				
@@ -84,19 +79,6 @@ public class LRU_aproksymowany {
 		
 		return bledyStrony;
 	}//koniec run
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }//koniec klasy
