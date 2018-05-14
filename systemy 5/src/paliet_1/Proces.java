@@ -8,13 +8,25 @@ public class Proces {
 	private int obicazenieProcesora;
 	
 	
+	public Proces(int ilosccyklidokonca, int obciazenie ) {
+		this.iloscCykliDoKonca = ilosccyklidokonca;
+		this.obicazenieProcesora = obciazenie;
+	}//koniec konstruktora
+	
 	public Proces() {
 		this.obicazenieProcesora = ThreadLocalRandom.current().nextInt(1, 10);
 		this.iloscCykliDoKonca = ThreadLocalRandom.current().nextInt(100, 1000);
 	}//koniec koknstruktora
 	
+	public Proces( Proces p ) {
+		this.iloscCykliDoKonca = p.getIloscCykliDoKonca();
+		this.obicazenieProcesora = p.getObicazenieProcesora();
+	}//koniec kopiuj¹cego
 	
 	
+	public void zmniejszIloscCykliDoKoncaOJeden() {
+		this.iloscCykliDoKonca--;
+	}//koniec zmniejsz ilosc cykli do konca
 	
 	
 	

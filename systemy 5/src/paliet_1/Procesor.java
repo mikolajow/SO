@@ -2,11 +2,6 @@ package paliet_1;
 
 import java.util.ArrayList;
 
-import metody.Metoda1;
-import metody.Metoda2;
-import metody.Metoda3;
-import metody.Strategia;
-
 public class Procesor {
 	
 	//zalozenia do zmiany
@@ -15,45 +10,44 @@ public class Procesor {
 	private static int minimalneObciazenie = 20;					//r
 	private static int ileRazyLosujemyInnyProcesor = 8;				//z
 	private static int ileProcesorowPytamyOAktualneObciazenie = 5;	//w przypadku strategii 3
-	private static ArrayList<Procesor> listaWszystkichProcesorow;
 	
-	private static int ileNowychProcesow = 500;		//ile procesow pojawi sie jeszcze na procesorach
-	
+	//zmienne procesorów
 	private int aktualneObciazenie;
-	private ArrayList<Proces> listaProcesow;	//aktualnie wykonywanych
-	private int numerMetody;
+	private ArrayList<Proces> listaProcesow;	//aktualnie wykonywanych 
+	private Wyniki wyniki;
 	
 	
-	
-	public Procesor( int numerMetody ) {
-		this.numerMetody = numerMetody;
-		this.aktualneObciazenie = 0;
+	public Procesor(  ) {
+		this.wyniki = new Wyniki();
 		this.listaProcesow = new ArrayList<>();
-		this.listaProcesow.add(new Proces());
+		this.listaProcesow.add(new Proces(100, 5));
+		this.aktualneObciazenie = 0;
 	}//koniec konstruktora
 	
 	
-	//metoda zwróci wyniki dla jednego procesora 
-	//w mainie w arryliscie zbierzemy wyniki dla wszystkich procesorów
-	//na tej podstawie policzymy koñcowe wyniki dla ca³ej symulacji
-	public Wyniki run() {
-		
-		Strategia metoda;
-		
-		if (numerMetody == 1) {
-			metoda = new Metoda1(this);
-		}else if (numerMetody == 2) {
-			metoda = new Metoda2(this);
-		}else {
-			metoda = new Metoda3(this);
-		}
-		
-		Wyniki wyniki = metoda.run();
-		
-		return wyniki;
-	}//koniec run
+	
+	public void aktualizujHistorieObciazeniaProcesora() {
+		wyniki.getHistoriaObciazeniaProcesora().add(aktualneObciazenie);
+	}//koniec aktualizuj historie
 	
 	
+	
+	public void usunWykonaneProcesy( ) {
+		for( int i = 0; i < listaProcesow.size(); i++ ) {
+			if( listaProcesow.get(i).getIloscCykliDoKonca() == 0 ) {
+				aktualneObciazenie = aktualneObciazenie - listaProcesow.get(i).getObicazenieProcesora();
+				this.listaProcesow.remove(i);
+				i--;
+			}//koniec if
+		}//koniec for
+	}//koniec usun proces
+	
+	
+	
+	public void dodajProces( Proces p ) {
+		this.listaProcesow.add(p);
+		this.aktualneObciazenie = aktualneObciazenie + p.getObicazenieProcesora();
+	}//koniec dodaj proces
 	
 	
 	// GETTERS AND SETTERS
@@ -87,12 +81,6 @@ public class Procesor {
 	public static void setIleProcesorowPytamyOAktualneObciazenie(int ileProcesorowPytamyOAktualneObciazenie) {
 		Procesor.ileProcesorowPytamyOAktualneObciazenie = ileProcesorowPytamyOAktualneObciazenie;
 	}
-	public static int getIleNowychProcesow() {
-		return ileNowychProcesow;
-	}
-	public static void setIleNowychProcesow(int ileNowychProcesow) {
-		Procesor.ileNowychProcesow = ileNowychProcesow;
-	}
 	public int getAktualneObciazenie() {
 		return aktualneObciazenie;
 	}
@@ -108,13 +96,13 @@ public class Procesor {
 	// KONIEC GETERÓW I SETTERÓW
 
 
-	public static ArrayList<Procesor> getListaWszystkichProcesorow() {
-		return listaWszystkichProcesorow;
+	public Wyniki getWyniki() {
+		return wyniki;
 	}
 
 
-	public static void setListaWszystkichProcesorow(ArrayList<Procesor> listaWszystkichProcesorow) {
-		Procesor.listaWszystkichProcesorow = listaWszystkichProcesorow;
+	public void setWyniki(Wyniki wyniki) {
+		this.wyniki = wyniki;
 	}
 }//koniec klasy
 
