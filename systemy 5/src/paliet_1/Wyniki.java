@@ -15,6 +15,18 @@ public class Wyniki {
 	}//koniec konstruktora
 	
 	
+	public void zwiekszIloscPrzemmieszczenProcesow( int oIle ) {
+		this.iloscPrzemieszczenProcesow = iloscPrzemieszczenProcesow + oIle;
+	}//koniec zwieksz ilosc pzemieszczen
+	
+	public void zwiekszIloscZapytanOObciazenie(int oile) {
+		this.iloscZapytanOObciazenie = iloscZapytanOObciazenie + oile;
+	}//konniec zwieksz ilosc zapytan o obciazenie
+	
+	
+	
+	
+	
 	
 	//GETERY I SETTERY
 	public ArrayList<Integer> getHistoriaObciazeniaProcesora() {

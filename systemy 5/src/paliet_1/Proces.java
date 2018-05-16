@@ -14,8 +14,8 @@ public class Proces {
 	}//koniec konstruktora
 	
 	public Proces() {
-		this.obicazenieProcesora = ThreadLocalRandom.current().nextInt(1, 10);
-		this.iloscCykliDoKonca = ThreadLocalRandom.current().nextInt(100, 1000);
+		this.obicazenieProcesora = ThreadLocalRandom.current().nextInt(1, 10 + 1);
+		this.iloscCykliDoKonca = ThreadLocalRandom.current().nextInt(25, 200 + 1);
 	}//koniec koknstruktora
 	
 	public Proces( Proces p ) {
