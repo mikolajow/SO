@@ -49,14 +49,17 @@ public class Runner {
 		//wyswietl wyniki dla so1 so2 so3
 		System.out.println("Srenide obcioazenie dla so1 = " + srednieObciazenieDlaSo1);
 		wyswietlLiczbeZapytanIPrzemieszczen(so1);
+		wyswietlSrednieOdchylenieStandardowe(so1, srednieObciazenieDlaSo1);
 		System.out.println();
 		
 		System.out.println("Srenide obcioazenie dla so2 = " + srednieObciazenieDlaSo2);
 		wyswietlLiczbeZapytanIPrzemieszczen(so2);
+		wyswietlSrednieOdchylenieStandardowe(so2, srednieObciazenieDlaSo2);
 		System.out.println();
 
 		System.out.println("Srenide obcioazenie dla so3 = " + srednieObciazenieDlaSo3);
 		wyswietlLiczbeZapytanIPrzemieszczen(so3);
+		wyswietlSrednieOdchylenieStandardowe(so3 , srednieObciazenieDlaSo3);
 				
 	}//koniec run
 	
@@ -78,8 +81,6 @@ public class Runner {
 			}//konniec if
 		}//koniec for
 	}//koniec dodaj procesy
-
-	
 	
 	private void usunWykonaneProcesy( SrodowiskoOperacyjne s ) {
 		for ( Procesor p : s.getListaWszystkichProcesorow() ) {
@@ -87,8 +88,6 @@ public class Runner {
 			s.czyWszystkieProcesoryWolne();
 		}//koniec for
 	}//koniec usun wykonane
-	
-	
 	
 	private void aktualizujHistorieObiazeniaProcesorow( SrodowiskoOperacyjne so) {
 		for ( Procesor p : so.getListaWszystkichProcesorow() ) {
@@ -98,7 +97,7 @@ public class Runner {
 	
 	
 	private double liczSrednieObciazenieProcesorow(SrodowiskoOperacyjne so) {
-		int liczbaWynikow = przygotujWyniki();
+		
 		double srednieObcizenieWszystkichProcesorow = 0;
 		
 		for ( Procesor p : so.getListaWszystkichProcesorow() ) {
@@ -115,28 +114,6 @@ public class Runner {
 		
 	}//koniec licz srednie obciazenie procesorow
 	
-	private int przygotujWyniki() {
-		
-		int najwiecejWynikow = 0;
-		
-		for( Procesor p : so1.getListaWszystkichProcesorow() ) {
-				if ( najwiecejWynikow < p.getWyniki().getHistoriaObciazeniaProcesora().size()  ) {
-					najwiecejWynikow = 	p.getWyniki().getHistoriaObciazeniaProcesora().size();
-				}//koniec if
-		}//koniec for
-		for( Procesor p : so2.getListaWszystkichProcesorow() ) {
-			if ( najwiecejWynikow < p.getWyniki().getHistoriaObciazeniaProcesora().size()  ) {
-				najwiecejWynikow = 	p.getWyniki().getHistoriaObciazeniaProcesora().size();
-			}//koniec if
-	}//koniec for
-		for( Procesor p : so3.getListaWszystkichProcesorow() ) {
-			if ( najwiecejWynikow < p.getWyniki().getHistoriaObciazeniaProcesora().size()  ) {
-				najwiecejWynikow = 	p.getWyniki().getHistoriaObciazeniaProcesora().size();
-			}//koniec if
-	}//koniec for
-		return najwiecejWynikow;
-	}//koniec przygotuj wyniki
-	
 	
 	private void wyswietlLiczbeZapytanIPrzemieszczen(SrodowiskoOperacyjne so) {
 		int liczbaZapytan = 0;
@@ -150,6 +127,30 @@ public class Runner {
 		System.out.println("Liczba Zapytan = " + liczbaZapytan + "	Liczba Przemieszczen Procesow = " + liczbaPrzemieszczen );
 		
 	}//koniec wyswietl
+	
+	
+	
+	private void wyswietlSrednieOdchylenieStandardowe(SrodowiskoOperacyjne so , double srednia) {
+		
+		double srednieOdchylenieStandardowe = 0;
+		double sumaOdchylen = 0;
+		
+		for ( Procesor p : so.getListaWszystkichProcesorow() ) {
+			double srednieObciazenie = 0;
+			
+			for (Integer i : p.getWyniki().getHistoriaObciazeniaProcesora()) {
+				srednieObciazenie = srednieObciazenie + i;
+			}//koniec for
+			
+			srednieObciazenie = srednieObciazenie/p.getWyniki().getHistoriaObciazeniaProcesora().size();
+			sumaOdchylen = sumaOdchylen + Math.pow(srednieObciazenie - srednia, 2);
+			
+		}//koniec for
+		
+		srednieOdchylenieStandardowe = Math.sqrt( sumaOdchylen/so.getListaWszystkichProcesorow().size() );
+		System.out.println( "Srednie odchylenie Standardowe = " + srednieOdchylenieStandardowe);
+	}//koniec wyswietl srednie odchylenie standardowe
+	
 	
 }//koniec klasy
 
