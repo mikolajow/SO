@@ -9,7 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class SrodowiskoOperacyjne {
 	
 	private  ArrayList<Procesor> listaWszystkichProcesorow;
-	private  int ileNowychProcesow = 600;		//ile procesow pojawi sie jeszcze na procesorach
+	private  int ileNowychProcesow = 400;		//ile procesow pojawi sie jeszcze na procesorach
 	private boolean czyWszystkieProcesoryWolne;
 	
 	
@@ -164,9 +164,18 @@ public class SrodowiskoOperacyjne {
 	
 	public void redukujIloscCykliProcesowDoZakonczenia( ) {
 		for( Procesor p : listaWszystkichProcesorow ) {
+			
+			/*
+			if( p.getListaProcesow().size() != 0 ) {
+				p.getListaProcesow().get(0).zmniejszIloscCykliDoKoncaOJeden();
+			}
+			*/
+			
 			for ( Proces proc : p.getListaProcesow() ) {
 				proc.zmniejszIloscCykliDoKoncaOJeden();
 			}//koniec for dla procesu
+			
+			
 		}//koniec for
 	}//koniec reujuj ilosc cykli
 	
