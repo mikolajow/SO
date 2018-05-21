@@ -9,7 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class SrodowiskoOperacyjne {
 	
 	private  ArrayList<Procesor> listaWszystkichProcesorow;
-	private  int ileNowychProcesow = 400;		//ile procesow pojawi sie jeszcze na procesorach
+	private static int ileNowychProcesow = 400;		//ile procesow pojawi sie jeszcze na procesorach
 	private boolean czyWszystkieProcesoryWolne;
 	
 	
@@ -53,11 +53,14 @@ public class SrodowiskoOperacyjne {
 				
 				for (int iloscPozostalychZapytan = Procesor.getIleRazyLosujemyInnyProcesor(); iloscPozostalychZapytan > 0; iloscPozostalychZapytan-- ) {
 					
+					kandydantNaRobola.getWyniki().zwiekszIloscZapytanOObciazenie(1);
+					
 					//losuje jakis procesor i sprawdzam czy popnizej progu
 					Procesor tymczasowy = listaWszystkichProcesorow.get(ThreadLocalRandom.current().nextInt(0, listaWszystkichProcesorow.size()));
 					
 					if( tymczasowy.hashCode() == kandydantNaRobola.hashCode() ) {
 						iloscPozostalychZapytan++;
+						kandydantNaRobola.getWyniki().zwiekszIloscZapytanOObciazenie( -1 );
 					}//koniec if - jesli wylosowany procesor jest naszym procesorem to losujemy inny
 					else if ( tymczasowy.getAktualneObciazenie() < Procesor.getMaxymalneObciazenie() ){
 						kandydantNaRobola = tymczasowy;
@@ -95,6 +98,7 @@ public class SrodowiskoOperacyjne {
 				else {//na procesorze na ktorym pojawil sie nowy proces przekroczono maxymalne obciazenie, szukamy zastepcy
 					
 					Procesor kandydatNaRobola = p;
+					kandydatNaRobola.getWyniki().zwiekszIloscZapytanOObciazenie( 1 );
 					
 					//jesli wszystkie procesory beda mialy aktualne obciazenie powyzej maxymalnego progu
 					//to proces bedzie sie wykonywal na ostatnim sprawdzanym procesorze niezaleznie od jego aktualnego obciazenia
@@ -188,17 +192,24 @@ public class SrodowiskoOperacyjne {
 	public void setListaWszystkichProcesorow(ArrayList<Procesor> listaWszystkichProcesorow) {
 		this.listaWszystkichProcesorow = listaWszystkichProcesorow;
 	}
-	public int getIleNowychProcesow() {
-		return ileNowychProcesow;
-	}
-	public void setIleNowychProcesow(int ileNowychProcesow) {
-		this.ileNowychProcesow = ileNowychProcesow;
-	}
+
 	public boolean getCzyWszystkieProcesoryWolne() {
 		return czyWszystkieProcesoryWolne;
 	}
 	public void setCzyWszystkieProcesoryWolne(boolean czyWszystkieProcesoryWolne) {
 		this.czyWszystkieProcesoryWolne = czyWszystkieProcesoryWolne;
+	}
+
+
+
+	public static int getIleNowychProcesow() {
+		return ileNowychProcesow;
+	}
+
+
+
+	public static void setIleNowychProcesow(int ileNowychProcesow) {
+		SrodowiskoOperacyjne.ileNowychProcesow = ileNowychProcesow;
 	}
 }//koniec klasy
 

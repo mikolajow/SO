@@ -148,7 +148,7 @@ public class Runner {
 		}//koniec for
 		
 		srednieOdchylenieStandardowe = Math.sqrt( sumaOdchylen/so.getListaWszystkichProcesorow().size() );
-		System.out.println( "Srednie odchylenie Standardowe = " + srednieOdchylenieStandardowe);
+		System.out.println( "Srednie odchylenie Standardowe = " +  srednieOdchylenieStandardowe);
 	}//koniec wyswietl srednie odchylenie standardowe
 	
 	
